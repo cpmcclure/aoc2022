@@ -49,6 +49,7 @@ const crawl = (dir = "", branch = tree.view) => {
 crawl();
 
 dirs = Object.fromEntries(Object.entries(dirs).sort((a, b) => a[1] - b[1]));
+console.log(Object.values(dirs).sort((a, b) => b - a)[0])
 
 // Part 1
 console.log(
@@ -56,6 +57,12 @@ console.log(
 		.filter((n) => n < 100000)
 		.reduce((a, n) => a + n, 0)}`
 );
+
+let spaceNeeded = 30000000 - (70000000 - dirs["/"]),
+	deleteDir = Object.keys(dirs).filter((dir) => dirs[dir] >= spaceNeeded)[0];
+
+console.log(`Directory to delete: "${deleteDir}", Size: ${dirs[deleteDir]}`); // Part 2
+// Correct Answer: 2832508
 
 app.listen(3000, () =>
   console.log('Example app listening on port 3000!'),
